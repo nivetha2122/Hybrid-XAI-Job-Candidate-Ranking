@@ -2,17 +2,17 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# ==========================
+
 # Load cleaned dataset
-# ==========================
+
 df = pd.read_csv("data/cleaned_resume.csv")
 
 print("Dataset Loaded Successfully!")
 print(df.columns)
 
-# ==========================
+
 # Ensure Clean_Resume exists
-# ==========================
+
 if "Clean_Resume" not in df.columns:
     raise ValueError("Clean_Resume column not found. Run clean_text.py first.")
 
@@ -24,9 +24,9 @@ df = df[df["Clean_Resume"].str.strip() != ""]
 
 print("\nNumber of resumes:", len(df))
 
-# ==========================
+
 # Job Description
-# ==========================
+
 
 job_description = """
 Machine Learning Engineer
@@ -45,9 +45,9 @@ Communication
 Problem Solving
 """
 
-# ==========================
+
 # TF-IDF
-# ==========================
+
 
 vectorizer = TfidfVectorizer(
     stop_words="english"
@@ -89,9 +89,9 @@ df = df.sort_values(
 
 df["Rank"] = range(1, len(df) + 1)
 
-# ==========================
+
 # Save
-# ==========================
+
 
 df.to_csv(
     "data/features.csv",
