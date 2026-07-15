@@ -3,24 +3,22 @@ import joblib
 
 from lime.lime_tabular import LimeTabularExplainer
 
-# ==========================
 # Load Dataset
-# ==========================
+
 
 df = pd.read_csv("data/features.csv")
 
 # Features used for training
 X = df[["Similarity_Score"]]
 
-# ==========================
+
 # Load Trained Model
-# ==========================
+
 
 model = joblib.load("models/xgboost_model.pkl")
 
-# ==========================
+
 # Create LIME Explainer
-# ==========================
 
 explainer = LimeTabularExplainer(
     training_data=X.values,
@@ -29,9 +27,9 @@ explainer = LimeTabularExplainer(
     mode="classification"
 )
 
-# ==========================
+
 # Explain First Candidate
-# ==========================
+
 
 exp = explainer.explain_instance(
     X.iloc[0].values,
