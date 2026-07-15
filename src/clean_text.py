@@ -28,8 +28,13 @@ def clean_resume(text):
     return text
 
 # Apply cleaning
-df["Clean_Resume"] = df["Resume_str"].apply(clean_resume)
 
+df["Clean_Resume"] = (
+    df["Resume_str"]
+    .fillna("")
+    .astype(str)
+    .apply(clean_resume)
+)
 # Save cleaned dataset
 df.to_csv("data/cleaned_resume.csv", index=False)
 
